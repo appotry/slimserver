@@ -1,4 +1,74 @@
-<h2><a name="v8.3.0" id="v8.3.0"></a>Version 8.3.0</h2>
+<h2><a name="v8.3.2" id="v8.3.2"></a>Version 8.3.2</h2>
+<ul>
+	<li>New Features:</li>
+	<ul>
+		<li></li>
+	</ul>
+	<br />
+
+	<li>Server Changes:</li>
+	<ul>
+		<li></li>
+	</ul>
+	<br />
+
+	<li>Platform Support:</li>
+	<ul>
+		<li><a href="https://github.com/Logitech/slimserver/issues/891">#891</a> - Add Perl 5.36 support for Linux aarch64, armv7.</li>
+		<li></li>
+	</ul>
+	<br />
+
+	<li>Bug Fixes:</li>
+	<ul>
+		<li><a href="https://github.com/Logitech/slimserver/pull/874">#874</a> - Fix shuffling when starting off with an empty playlist (thanks robho!)</li>
+		<li><a href="https://github.com/Logitech/slimserver/pull/918">#918</a> - Fix browsing down to album favorites etc.</li>
+		<li>Add CPAN/auto/5.14 to lib search path for Windows builds to include Font::FreeType.</li>
+		<li>Fix another absolute path to a stylesheet in the Default skin.</li>
+		<li>Fix an issue where registering a pre-cache resolution would cause a subsequent LMS start to fail.</li>
+	</ul>
+	<br />
+
+	<li>Other:</li>
+	<ul>
+	</ul>
+	<br />
+</ul>
+
+
+<h2><a name="v8.3.1" id="v8.3.1"></a>Version 8.3.1 - 2023-02-17 (026019bb7)</h2>
+<ul>
+	<li>Server Changes:</li>
+	<ul>
+		<li>Make log viewer template (log.html) skinnable by including skin.css.</li>
+	</ul>
+	<br />
+
+	<li>Platform Support:</li>
+	<ul>
+		<li>Update Audio::Scan to 1.06 for certain platforms (thanks ralphy, robho, slartibartfast!)</li>
+		<li><a href="https://github.com/Logitech/slimserver/issues/826">#826</a> - Add Perl 5.36 support for Linux x86_64.</li>
+		<li>Add Perl 5.34 support for Linux aarch64.</li>
+		<li>Add signed version of our custom Perl build for macOS.</li>
+	</ul>
+	<br />
+
+	<li>Bug Fixes:</li>
+	<ul>
+		<li><a href="https://github.com/Logitech/slimserver/pull/827">#827</a> - Fix installation of plugin updates - honour user's choice (thanks mw9!)</li>
+		<li>Don't use our custom Perl build on macOS 10.x - these versions come with a still working Perl 5.18.</li>
+		<li><a href="https://github.com/Logitech/slimserver/pull/834">#834</a> - Fix no-transcoding playback of m4a audio (thanks philippe44!)</li>
+		<li><a href="https://github.com/Logitech/slimserver/pull/835">#835</a> - Improve Alarm reliability - prevent accidental/random alarm stops.</li>
+		<li><a href="https://github.com/Logitech/slimserver/pull/843">#843</a> - HTTPSocks.pm - Binary OR used by mistake - Logical OR needed (thanks mw9!).</li>
+		<li>Remove support for "deflate" encoding type in SimpleHTTP requests: it must have been broken for over a decade!</li>
+		<li><a href="https://github.com/Logitech/slimserver/pull/852">#852</a> - No result return while using Chinese Keyword in Fulltext Search.</li>
+		<li><a href="https://github.com/Logitech/slimserver/pull/857">#857</a> - Fix changing MySB credentials using the "setsncredentials" command.</li>
+	</ul>
+	<br />
+</ul>
+
+
+<h2><a name="v8.3.0" id="v8.3.0"></a>Version 8.3.0 - 2022-11-04 (4e15dbdff)</h2>
 <ul>
 	<li><a href="Changelog8.html#v8.2.1">Upstream fixes from Logitech Media Server 8.2.x</a></li>
 	<br />
@@ -75,11 +145,6 @@
 		<li><a href="https://github.com/Logitech/slimserver/pull/797">#797</a> - Fix Power off/Power on behaviour - Player would resume playback of stale track when reconnecting, although nothing to be resumed.</li>
 	</ul>
 	<br />
-
-	<li>Other:</li>
-	<ul>
-	</ul>
-	<br />
 </ul>
 
 
@@ -104,11 +169,6 @@
 		<li>Fix resizing images with a dash in the name.</li>
 		<li>Define $::cachedir in the scanner, too, as many parts of the code rely on it.</li>
 		<li><a href="https://github.com/Logitech/slimserver/issues/760">#760</a> - Fix various XSS possibilities in settings pages etc.</li>
-	</ul>
-	<br />
-
-	<li>Other:</li>
-	<ul>
 	</ul>
 	<br />
 </ul>

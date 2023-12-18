@@ -201,9 +201,8 @@ sub _prepareDbItems {
 
 	foreach my $item (@$items) {
 		if ( $item->{'url'} =~ /^db:(\w+)\.(\w+)=(.+)/ ) {
-			my ($class, $key, $value) = ($1, $2, $3);
-
-			$class = ucfirst($class);
+			my $dbClass = ucfirst($1);
+			my $url = $item->{'url'};
 
 			$dbBrowseModes ||= {
 				Album       => [ 'album_id', \&Slim::Menu::BrowseLibrary::_tracks, {
@@ -219,14 +218,13 @@ sub _prepareDbItems {
 				} ],
 			};
 
-			if ( $dbBrowseModes->{$class} ) {
+			if ( $dbBrowseModes->{$dbClass} ) {
 				$item->{'type'} = 'playlist';
 				$item->{'play'} = $item->{'url'} . '&libraryTracks.library=-1';
 				$item->{'url'}  = \&_dbItem;
 				$item->{'passthrough'} = [{
-					class => $class,
-					key   => $key,
-					value => $value,
+					class => $dbClass,
+					url   => $url,
 				}];
 			}
 		}
@@ -239,19 +237,10 @@ sub _prepareDbItems {
 sub _dbItem {
 	my ($client, $callback, $args, $pt) = @_;
 
-	my $class  = ucfirst( delete $pt->{'class'} );
-	my $key   = URI::Escape::uri_unescape(delete $pt->{'key'});
-	my $value = URI::Escape::uri_unescape(delete $pt->{'value'});
+	my $dbClass  = ucfirst( delete $pt->{'class'} );
 
-	if (!utf8::is_utf8($value) && !utf8::decode($value)) { $log->warn("The following value is not UTF-8 encoded: $value"); }
-
-	if (utf8::is_utf8($value)) {
-		utf8::decode($value);
-		utf8::encode($value);
-	}
-
-	if ( my $dbBrowseMode = $dbBrowseModes->{$class} ) {
-		my $obj = Slim::Schema->single( ucfirst($class), { $key => $value } );
+	if ( my $dbBrowseMode = $dbBrowseModes->{$dbClass} ) {
+		my $obj = Slim::Schema->objectForUrl($pt->{url});
 
 		if ($obj && $obj->id) {
 			$pt->{'searchTags'} = [ $dbBrowseMode->[0] . ':' . $obj->id, 'library_id:-1' ];
